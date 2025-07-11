@@ -1,10 +1,11 @@
 module.exports = {
-  apps : [{
-    script: 'index.js',
-    watch: '.'
-  }, {
-    script: './service-worker/',
-    watch: ['./service-worker']
-  }],
-  
+	apps : [{
+		name: 'farsight',
+		script: 'index.js',
+		watch: ['index.js', 'events', 'commands'],
+		out_file: '/var/www/Farsight-RPG-BOT/logs/outputs.json',
+		error_file: '/var/www/Farsight-RPG-BOT/logs/errors.json',
+		log_type: 'json',
+	}],
+
 };

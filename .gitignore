@@ -1,3 +1,5 @@
-/bot-env
 /logs
 .env
+/node_modules
+eslint.config.js
+config.json
