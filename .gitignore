@@ -3,3 +3,5 @@
 /node_modules
 eslint.config.js
 config.json
+config.js
+google-creds.json

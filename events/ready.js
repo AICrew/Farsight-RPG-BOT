@@ -1,9 +1,10 @@
-const { Events } = require('discord.js');
+const Logger = require('../utils/logger');
 
 module.exports = {
-	name: Events.ClientReady,
-	once: true,
-	execute(client) {
-		console.log(`Ready! Logged in as ${client.user.tag}`);
-	},
+  name: 'ready',
+  once: true,
+  execute(client) {
+    Logger.info(`Bot pronto! Loggato come ${client.user.tag}`);
+    client.user.setActivity('Farsight RPG', { type: 'PLAYING' });
+  }
 };

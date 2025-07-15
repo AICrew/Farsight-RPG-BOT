@@ -1,0 +1,125 @@
+{
+  "character": {
+    "name": "B3",
+    "level": "V8",
+    "classtype": "P8",
+    "specie": "B8",
+    "player": "B4",
+    "psipoints": "B1",
+    "psiattack": "B1",
+    "psiforce": "B1",
+    "psilimit": "B1",
+    "background": "I8",
+    "vitality_point": "AD4",
+    "death_threshold": "AA4",
+    "speed": "V14",
+    "climb": "K27",
+    "fly": "",
+    "swim": "K26",
+    "initiative": "Y14",
+    "defense": "V18",
+    "armor_value": "Y18"
+  },
+  "abilities": {
+    "Combativity": {
+      "value": "B13",
+      "skills": {
+        "Cold Weapons": "K14",
+        "Energy Weapons": "K16",
+        "Gunnery": "K18",
+        "Kinetic Weapons": "K15",
+        "Natural Weapon": "K17",
+        "Wrestling": "K20",
+        "Throwing": "K19"
+      }
+    },
+    "Strength": {
+      "value": "B22",
+      "skills": {
+        "Athletics": "K23",
+        "Climbing": "K27",
+        "G-Zero": "K25",
+        "Might": "K24",
+        "Swimming": "K26",
+        "Vigor": "K28"
+      }
+    },
+    "Dexterity": {
+      "value": "B30",
+      "skills": {
+        "Acrobatics": "K31",
+        "Dancing": "K33",
+        "Piloting": "K36",
+        "Reflex": "K37",
+        "Riding": "K32",
+        "Stealth": "K34",
+        "Sleight of Hand": "K35"
+      }
+    },
+    "Perception": {
+      "value": "B39",
+      "skills": {
+        "Alertness": "K40",
+        "Insight": "K42",
+        "Inspection": "K43",
+        "Music": "K44",
+        "Survival": "K45",
+        "Visual Arts": "K41"
+      }
+    },
+    "Intelligence": {
+      "value": "B47",
+      "skills": {
+        "Erudition": "K49",
+        "Lucidity": "K50",
+        "Medicine": "K51",
+        "Nature": "K52",
+        "Psionics": "K53",
+        "Science": "K54",
+        "Warfare": "K48"
+      }
+    },
+    "Will": {
+      "value": "B56",
+      "skills": {
+        "Charisma": "K57",
+        "Cunning": "K62",
+        "Fortitude": "K59",
+        "Intimidation": "K60",
+        "Socialite": "K61",
+        "Streetwise": "K63",
+        "Trading": "K58"
+      }
+    },
+    "Tech": {
+      "value": "B65",
+      "skills": {
+        "Astronautics": "K66",
+        "Computer": "K68",
+        "Cybernetics": "K67",
+        "Explosives": "K69",
+        "Mechatronics": "K70",
+        "Mystification": "K71"
+      }
+    }
+  },
+  "attacks": [
+    { 
+      "name": "B1", 
+      "atkbonus": "B1", 
+      "damage": "B1", 
+      "range": "B1" 
+    }
+  ],
+  "powers": [
+    { 
+      "name": "B1", 
+      "damage": "B1" 
+    }
+  ],
+  "traits": [
+    { 
+      "name": "S20"
+    }
+  ]
+}
