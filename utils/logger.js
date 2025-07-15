@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { WebhookClient } = require('discord.js');
 const config = require('../config');
+const { loc } = require('./translator');
 
 // Setup cartella logs
 const logsDir = path.join(__dirname, '../logs');
@@ -44,7 +45,7 @@ class Logger {
     // Webhook per errori
     if (level === LogLevel.ERROR && this.webhook) {
       this.webhook.send({
-        content: `**ERRORE** in ${config.env.toUpperCase()}:\n\`\`\`${message}\n${JSON.stringify(metadata)}\`\`\``
+        content: `**${loc('log.error.logger_error')}** ${loc('log.error.in_environment', { env: config.env.toUpperCase() })}:\n\`\`\`${message}\n${JSON.stringify(metadata)}\`\`\``
       }).catch(console.error);
     }
   }

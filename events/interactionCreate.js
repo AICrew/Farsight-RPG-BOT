@@ -1,5 +1,6 @@
 const Logger = require('../utils/logger');
-const { supabase } = require('../utils/supabaseClient.js')
+const { supabase } = require('../utils/supabaseClient.js');
+const { loc } = require('../utils/translator');
 
 module.exports = {
   name: 'interactionCreate',
@@ -7,8 +8,12 @@ module.exports = {
 
     if (interaction.isAutocomplete()) {
       if (interaction.commandName === 'show') {
-        await require('../commands/sheet/show').autocomplete(interaction);
+        const showCommand = require('../commands/sheet/show.js');
+        if (showCommand.autocomplete) {
+          await showCommand.autocomplete(interaction);
+        }
       }
+      return;
     }
 
     if (!interaction.isCommand()) return;
@@ -17,20 +22,20 @@ module.exports = {
     if (!command) return;
 
     try {
-      Logger.debug(`Esecuzione comando: ${interaction.commandName}`, {
+      Logger.debug(loc('interaction.command_executing', { command: interaction.commandName }), {
         user: interaction.user.id,
         guild: interaction.guild?.id || 'DM'
       });
       await command.execute(interaction, client);
     } catch (error) {
-      Logger.error(`Errore nell'esecuzione di /${interaction.commandName}`, {
+      Logger.error(loc('log.error.command_execution'), {
         user: interaction.user.id,
         stack: error.stack
       });
-      
-      await interaction.reply({ 
-        content: '❌ Errore durante l\'esecuzione del comando!',
-        ephemeral: true 
+
+      await interaction.reply({
+        content: loc('log.error.command_execution'),
+        ephemeral: true
       });
     }
   }

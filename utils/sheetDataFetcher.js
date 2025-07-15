@@ -1,6 +1,7 @@
 const googleAuth = require('./googleAuth');
 const importMap = require('./importMap');
 const logger = require('./logger');
+const { loc } = require('./translator');
 
 class SheetDataFetcher {
   /**
@@ -11,15 +12,15 @@ class SheetDataFetcher {
     try {
       const doc = await googleAuth.getDocFromLink(fullLink);
       const sheet = doc.sheetsByIndex[0];
-      if (!sheet) throw new Error('Nessun tab disponibile nel foglio');
+      if (!sheet) throw new Error(loc('sheet.noTabAvailable'));
 
-      logger.info(`[fetchAllData] Caricamento completo di tutte le celle del tab...`);
+      logger.info(`[fetchAllData] ${loc('sheet.loadingAllCells')}...`);
       try {
         await sheet.loadCells(); // 🔁 Carica tutto il foglio
-        logger.info(`[fetchAllData] Celle caricate con successo`);
+        logger.info(`[fetchAllData] ${loc('sheet.cellsLoaded')}`);
       } catch (err) {
-        logger.error('Errore durante loadCells globale', { cause: err.message });
-        throw new Error('Errore durante il caricamento completo del foglio');
+        logger.error(loc('sheet.loadCellsError'), { cause: err.message });
+        throw new Error(loc('sheet.loadCellsException'));
       }
 
       // Estrazione dati
@@ -33,8 +34,8 @@ class SheetDataFetcher {
       };
 
     } catch (error) {
-      logger.error('Estrazione dati fallita', { error: error.message });
-      throw new Error(`Errore lettura foglio: ${error.message}`);
+      logger.error(loc('sheet.extractionFailed'), { error: error.message });
+      throw new Error(`${loc('sheet.readError')}: ${error.message}`);
     }
   }
 
@@ -91,10 +92,11 @@ class SheetDataFetcher {
       const value = sheet.getCellByA1(cell).value;
       return (typeof value === 'string') ? value.trim() : value;
     } catch (error) {
-      logger.warn(`Cella "${cell}" non trovata o fuori dal range del foglio`);
+      logger.warn(loc('sheet.cellMissing', { cell }));
       return undefined;
     }
   }
 }
 
 module.exports = new SheetDataFetcher();
+

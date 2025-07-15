@@ -1,19 +1,38 @@
 const fs = require('fs');
 const path = require('path');
 const Logger = require('./logger');
+const { loc } = require('./translator');
 
 module.exports = async (client) => {
   const eventsPath = path.join(__dirname, '../events');
-  const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
+  let eventFiles;
+  
+  try {
+    eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
+  } catch (err) {
+    Logger.error(loc('events.readDirError'), { stack: err.stack });
+    return;
+  }
 
   for (const file of eventFiles) {
     const filePath = path.join(eventsPath, file);
-    const event = require(filePath);
+    let event;
+    
+    try {
+      event = require(filePath);
+    } catch (err) {
+      Logger.error(loc('events.loadFileError', { file }), { stack: err.stack });
+      continue;
+    }
 
     if (!event.name || !event.execute) {
-      Logger.warn(`Evento non valido in ${file}`, { 
-        reason: !event.name ? 'Manca "name"' : 'Manca "execute"' 
-      });
+      Logger.warn(
+        loc('events.invalidEvent', { file }),
+        {
+          reason: !event.name ? loc('events.missingName') : loc('events.missingExecute'),
+          file
+        }
+      );
       continue;
     }
 
@@ -23,11 +42,11 @@ module.exports = async (client) => {
       } else {
         client.on(event.name, (...args) => event.execute(...args, client));
       }
-      Logger.debug(`Caricato evento: ${event.name}`);
+      Logger.debug(loc('events.loaded', { name: event.name }));
     } catch (error) {
-      Logger.error(`Errore nel caricare l'evento ${event.name}`, { 
+      Logger.error(loc('events.loadError', { name: event.name }), {
         stack: error.stack,
-        file: file 
+        file
       });
     }
   }

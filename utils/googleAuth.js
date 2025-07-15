@@ -1,13 +1,15 @@
 const { JWT } = require('google-auth-library');
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 const creds = require('../google-creds.json');
+const { loc } = require('./translator');
+const Logger = require('./logger');
 
 module.exports = {
   async getDocFromLink(fullLink) {
     const sheetId = fullLink.match(/\/d\/([a-zA-Z0-9-_]+)/)?.[1];
-    if (!sheetId) throw new Error('Formato link non valido');
+    if (!sheetId) throw new Error(loc('log.error.google_auth_invalid_link'));
 
-    console.log('[googleAuth] Sheet ID:', sheetId);
+    Logger.info(loc('log.success.google_auth_sheet_id', { sheetId }));
 
     const auth = new JWT({
       email: creds.client_email,
@@ -15,13 +17,13 @@ module.exports = {
       scopes: ['https://www.googleapis.com/auth/spreadsheets']
     });
 
-    console.log('[googleAuth] JWT creato con email:', creds.client_email);
+    Logger.info(loc('log.success.google_auth_jwt_created', { email: creds.client_email }));
 
     const doc = new GoogleSpreadsheet(sheetId, auth);
 
-    console.log('[googleAuth] Tentativo di caricare info del documento...');
+    Logger.info(loc('log.success.google_auth_loading_doc'));
     await doc.loadInfo();
-    console.log('[googleAuth] Documento caricato con successo');
+    Logger.info(loc('log.success.google_auth_doc_loaded'));
 
     return doc;
   }

@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const Logger = require('./logger');
+const { loc } = require('./translator');
 
 module.exports = async (client) => {
   const commandsPath = path.join(__dirname, '../commands');
@@ -16,9 +17,11 @@ module.exports = async (client) => {
       
       if ('data' in command && 'execute' in command) {
         client.commands.set(command.data.name, command);
-        Logger.debug(`Caricato comando: ${command.data.name}`);
+        Logger.debug(loc('log.error.commands_loaded', { name: command.data.name }));
       } else {
-        Logger.warn(`Comando non valido in ${filePath}`, { missing: !command.data ? 'data' : 'execute' });
+        Logger.warn(loc('log.error.commands_invalid', { file: filePath }), { 
+          missing: !command.data ? loc('log.error.commands_missingData') : loc('log.error.commands_missingExecute')
+        });
       }
     }
   }

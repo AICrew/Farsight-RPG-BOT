@@ -1,12 +1,13 @@
 const { createClient } = require('@supabase/supabase-js');
 const logger = require('./logger');
 const config = require('../config.js');
+const { loc } = require('./translator');
 
 class SupabaseClient {
   constructor() {
     if (!config.supabase.url || !config.supabase.key) {
-      logger.error('Configurazione Supabase mancante');
-      throw new Error('Supabase non configurato');
+      logger.error(loc('log.error.supabase_config_missing'));
+      throw new Error(loc('log.error.supabase_config_error'));
     }
 
     this.client = createClient(config.supabase.url, config.supabase.key, {
