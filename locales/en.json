@@ -1,130 +1,188 @@
 {
-  "showDescription": "Mostra i dati di un personaggio",
-  "characterName": "Nome del personaggio",
-  "species": "Specie",
-  "player": "Giocatore",
-  "classType": "Classe",
-  "level": "Livello",
+  "showDescription": "Show character data",
+  "characterName": "Character Name",
+  "species": "Species",
+  "player": "Player",
+  "classType": "Class",
+  "level": "Level",
   "link": "Link",
-  "health": "Salute",
-  "stats": "Statistiche",
+  "health": "Health",
+  "stats": "Stats",
   "background": "Background",
   "backgrounds": "Background",
-  "vitality_point": "Punti Vitalità",
-  "death_threshold": "Soglia di Morte",
-  "speed": "Velocità",
-  "climb": "Scalata",
-  "fly": "Volo",
-  "swim": "Nuoto",
-  "initiative": "Iniziativa",
-  "defense": "Difesa",
-  "armor_value": "Valore Armatura",
-  "abilitiesAndSkills": "Abilità e Qualifiche",
-  "attacksAndPowers": "Attacchi e Poteri",
-  "value": "Valore",
+  "vitality_point": "Vitality Points",
+  "death_threshold": "Death Threshold",
+  "speed": "Speed",
+  "climb": "Climb",
+  "fly": "Fly",
+  "swim": "Swim",
+  "initiative": "Initiative",
+  "defense": "Defense",
+  "armor_value": "Armor Value",
+  "abilitiesAndSkills": "Abilities and Skills",
+  "attacksAndPowers": "Attacks and Powers",
+  "value": "Value",
   "bonus": "Bonus",
-  "range": "Gittata",
-  "notFound": "Nessun personaggio trovato",
-  "notAuthorized": "Non autorizzato",
-  "error": "Errore",
-  "success": "Successo",
-  "abilities": {
-    "Combativity": "Combattività",
-    "Strength": "Robustezza",
-    "Dexterity": "Destrezza",
-    "Perception": "Percezione",
-    "Intelligence": "Intelligenza",
-    "Will": "Volontà",
-    "Tech": "Tecnica"
+  "range": "Range",
+  "abilities": "Abilities",
+  "skills": "Skills",
+  "attack": "Attack",
+  "attacks": "Attacks",
+  "atkbonus": "Attack Bonus",
+  "trait": "Trait",
+  "traits": "Traits",
+  "powers": "Powers",
+  "power": "Power",
+  "psipoint": "PSI Points",
+  "psiattack": "Psi Attack",
+  "psiforce": "Psi Force",
+  "psilimit": "PSI Limit",
+
+  "abilitiesValue": {
+    "Combativity": "Combativity",
+    "Strength": "Strength",
+    "Dexterity": "Dexterity",
+    "Perception": "Perception",
+    "Intelligence": "Intelligence",
+    "Will": "Will",
+    "Tech": "Tech"
   },
-  "skills": {
-    "Cold Weapons": "Armi Bianche",
-    "Energy Weapons": "Armi Energetiche",
-    "Gunnery": "Artiglieria",
-    "Kinetic Weapons": "Armi Cinetiche",
-    "Natural Weapon": "Armi Naturali",
-    "Wrestling": "Lottare",
-    "Throwing": "Lanciare",
-    "Athletics": "Atletica",
-    "Climbing": "Scalare",
+
+  "skillsValue": {
+    "Cold Weapons": "Cold Weapons",
+    "Energy Weapons": "Energy Weapons",
+    "Gunnery": "Gunnery",
+    "Kinetic Weapons": "Kinetic Weapons",
+    "Natural Weapon": "Natural Weapon",
+    "Wrestling": "Wrestling",
+    "Throwing": "Throwing",
+
+    "Athletics": "Athletics",
+    "Climbing": "Climbing",
     "G-Zero": "G-Zero",
-    "Might": "Forza",
-    "Swimming": "Nuotare",
-    "Vigor": "Tempra",
-    "Acrobatics": "Acrobazia",
-    "Dancing": "Danza",
-    "Piloting": "Pilotare",
-    "Reflex": "Riflessi",
-    "Riding": "Cavalcare",
-    "Stealth": "Furtività",
-    "Sleight of Hand": "Manolesta",
-    "Alertness": "Allerta",
-    "Insight": "Intuizione",
-    "Inspection": "Ispezionare",
-    "Music": "Musica",
-    "Survival": "Sopravvivenza",
-    "Visual Arts": "Arti Visive",
-    "Erudition": "Erudizione",
-    "Lucidity": "Lucidità",
-    "Medicine": "Medicina",
-    "Nature": "Natura",
-    "Psionics": "Psicopotere",
-    "Science": "Scienza",
-    "Warfare": "Arti Belliche",
-    "Charisma": "Carisma",
-    "Cunning": "Scaltrezza",
-    "Fortitude": "Fermezza",
-    "Intimidation": "Intimidire",
-    "Socialite": "Mondanità",
-    "Streetwise": "Vita di Strada",
-    "Trading": "Commercio",
-    "Astronautics": "Astronautica",
+    "Might": "Might",
+    "Swimming": "Swimming",
+    "Vigor": "Vigor",
+
+    "Acrobatics": "Acrobatics",
+    "Dancing": "Dancing",
+    "Piloting": "Piloting",
+    "Reflex": "Reflex",
+    "Riding": "Riding",
+    "Stealth": "Stealth",
+    "Sleight of Hand": "Sleight of Hand",
+
+    "Alertness": "Alertness",
+    "Insight": "Insight",
+    "Inspection": "Inspection",
+    "Music": "Music",
+    "Survival": "Survival",
+    "Visual Arts": "Visual Arts",
+
+    "Erudition": "Erudition",
+    "Lucidity": "Lucidity",
+    "Medicine": "Medicine",
+    "Nature": "Nature",
+    "Psionics": "Psionics",
+    "Science": "Science",
+    "Warfare": "Warfare",
+
+    "Charisma": "Charisma",
+    "Cunning": "Cunning",
+    "Fortitude": "Fortitude",
+    "Intimidation": "Intimidation",
+    "Socialite": "Socialite",
+    "Streetwise": "Streetwise",
+    "Trading": "Trading",
+
+    "Astronautics": "Astronautics",
     "Computer": "Computer",
-    "Cybernetics": "Cibernetica",
-    "Explosives": "Esplosivi",
-    "Mechatronics": "Meccatronica",
-    "Mystification": "Mistificazione"
+    "Cybernetics": "Cybernetics",
+    "Explosives": "Explosives",
+    "Mechatronics": "Mechatronics",
+    "Mystification": "Mystification"
   },
-  "attacks": {
-    "attack": "Attacco",
-    "attacks": "Attacchi",
-    "atkbonus": "Attacco Bonus"
-  },
-  "powers": {
-    "powers": "Poteri",
-    "power": "Power",
-    "psipoint": "Punti PSI",
-    "psiattack": "Attacco Psionico",
-    "psiforce": "Forza Psionica",
-    "psilimit": "Limite PSI"
-  },
-  "traits": {
-    "traits": "Tratti",
-    "trait": "Tratto"
-  },
-  "errors": {
-    "database_error": "Errore nel database",
-    "character_not_found": "Personaggio non trovato",
-    "generic_error": "Errore durante l'operazione"
-  },
-  "commands": {
-    "import": {
-      "description": "Importa un personaggio da Google Sheets",
-      "sheet_url_desc": "URL condiviso del foglio Google",
-      "success": "✅ {name} ({class} Lv.{level}) importato con successo!",
-      "error": "❌ Importazione fallita: {error}"
+
+  "log": {
+    "error": {
+      "removed_old_log": "Removed old log: {{file}} ({{days}} days)",
+      "import": "❌ Error during import: {{message}}",
+      "import_unknown": "Unknown error",
+      "import_details": "Details: {{details}}",
+      "command_execution": "❌ Error during command execution!",
+      "show_no_name": "You must provide the character name.",
+      "show_not_found": "Character \"{{name}}\" not found.",
+      "show_generic": "❌ Error in show command: {{message}}",
+      "interaction_command": "Error during /{{command}} execution",
+      "unhandled_rejection": "Unhandled promise rejection",
+      "supabase_config_missing": "Supabase configuration missing (url or key).",
+      "supabase_config_error": "Supabase configuration error.",
+      "logger_error": "Error",
+      "in_environment": "on environment {{env}}",
+      "commands_loaded": "Loaded command: {{name}}",
+      "commands_invalid": "Invalid command in file {{file}}",
+      "commands_missingData": "Missing command data",
+      "commands_missingExecute": "Missing execute method",
+      "google_auth_invalid_link": "Invalid link format"
     },
-    "show": {
-      "description": "Mostra la scheda di un personaggio",
-      "character_name_desc": "Nome esatto del personaggio"
-    },
-    "update": {
-      "description": "Aggiorna un campo del personaggio",
-      "character_name_desc": "Nome del personaggio da aggiornare",
-      "field_desc": "Campo da aggiornare",
-      "value_desc": "Nuovo valore",
-      "success": "✅ {name} - {field} aggiornato a {value}",
-      "error": "❌ Aggiornamento fallito: {error}"
+    "success": {
+      "import": "✅ **{{name}}** imported successfully.",
+      "info": "Information",
+      "debug": "Debug",
+      "google_auth_sheet_id": "Extracted sheet ID: {{sheetId}}",
+      "google_auth_jwt_created": "JWT created for email: {{email}}",
+      "google_auth_loading_doc": "Loading document info...",
+      "google_auth_doc_loaded": "Document info loaded"
     }
+  },
+
+  "commands": {
+    "show": {
+      "description": "Show saved character data",
+      "option": {
+        "name": "Character Name"
+      },
+      "base_info": "📋 Basic Info",
+      "traits": "🧠 Traits",
+      "abilities_and_skills": "🧬 Abilities and Skills of {{name}}",
+      "no_traits": "No traits available."
+    },
+    "import": {
+      "description": "Import ALL data from the Google sheet",
+      "option": {
+        "sheet_link": "Paste the FULL sheet link"
+      }
+    }
+  },
+
+  "interaction": {
+    "command_executing": "Executing command: {{command}}",
+    "bot_ready": "Bot ready! Logged in as {{tag}}"
+  },
+
+  "misc": {
+    "pagination_next": "▶",
+    "pagination_prev": "◀",
+    "no_data": "-"
+  },
+  "sheet": {
+    "noTabAvailable": "No tab available in the sheet.",
+    "loadingAllCells": "Loading all cells",
+    "cellsLoaded": "Cells loaded successfully",
+    "loadCellsError": "Error loading cells",
+    "loadCellsException": "Exception occurred during cells loading",
+    "extractionFailed": "Failed to extract data from the sheet",
+    "readError": "Sheet read error",
+    "cellMissing": "Missing or invalid cell: {{cell}}"
+  },
+  "events": {
+    "readDirError": "Error reading events folder",
+    "loadFileError": "Error loading event file: {{file}}",
+    "invalidEvent": "Invalid event in file {{file}}",
+    "missingName": "Missing event name",
+    "missingExecute": "Missing execute method",
+    "loaded": "Event loaded: {{name}}",
+    "loadError": "Error loading event: {{name}}"
   }
+
 }
