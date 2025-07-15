@@ -123,7 +123,8 @@
       "commands_invalid": "Comando non valido nel file {{file}}",
       "commands_missingData": "Dati comando mancanti",
       "commands_missingExecute": "Metodo execute mancante",
-      "google_auth_invalid_link": "Formato del link non valido"
+      "google_auth_invalid_link": "Formato del link non valido",
+      "delete": "❌ Errore durante l'eliminazione del personaggio \"{{name}}\"."
     },
     "success": {
       "import": "✅ **{{name}}** importato con successo.",
@@ -132,7 +133,8 @@
       "google_auth_sheet_id": "ID del foglio estratto: {{sheetId}}",
       "google_auth_jwt_created": "JWT creato per l'email: {{email}}",
       "google_auth_loading_doc": "Caricamento informazioni del documento...",
-      "google_auth_doc_loaded": "Informazioni del documento caricate"
+      "google_auth_doc_loaded": "Informazioni del documento caricate",
+      "delete": "✅ Personaggio \"{{name}}\" eliminato con successo."
     }
   },
 
@@ -152,6 +154,14 @@
       "option": {
         "sheet_link": "Incolla il link COMPLETO del foglio"
       }
+    },
+    "delete": {
+      "description": "Elimina un personaggio",
+      "confirm": "Conferma eliminazione",
+      "cancel": "Annulla",
+      "confirmMessage": "Sei sicuro di voler eliminare \"{{name}}\"?",
+      "cancelled": "Eliminazione annullata.",
+      "timeout": "Tempo scaduto. Nessuna azione effettuata."
     }
   },
   "interaction": {

@@ -123,7 +123,8 @@
       "commands_invalid": "Invalid command in file {{file}}",
       "commands_missingData": "Missing command data",
       "commands_missingExecute": "Missing execute method",
-      "google_auth_invalid_link": "Invalid link format"
+      "google_auth_invalid_link": "Invalid link format",
+      "delete": "❌ Error deleting character \"{{name}}\"."
     },
     "success": {
       "import": "✅ **{{name}}** imported successfully.",
@@ -132,7 +133,8 @@
       "google_auth_sheet_id": "Extracted sheet ID: {{sheetId}}",
       "google_auth_jwt_created": "JWT created for email: {{email}}",
       "google_auth_loading_doc": "Loading document info...",
-      "google_auth_doc_loaded": "Document info loaded"
+      "google_auth_doc_loaded": "Document info loaded",
+      "delete": "✅ Character \"{{name}}\" successfully deleted."
     }
   },
 
@@ -151,6 +153,14 @@
       "description": "Import ALL data from the Google sheet",
       "option": {
         "sheet_link": "Paste the FULL sheet link"
+      },
+      "delete": {
+        "description": "Delete a character",
+        "confirm": "Confirm deletion",
+        "cancel": "Cancel",
+        "confirmMessage": "Are you sure you want to delete \"{{name}}\"?",
+        "cancelled": "Deletion cancelled.",
+        "timeout": "Timeout expired. No action taken."
       }
     }
   },

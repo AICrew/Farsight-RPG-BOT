@@ -7,11 +7,16 @@ module.exports = {
   async execute(interaction, client) {
 
     if (interaction.isAutocomplete()) {
-      if (interaction.commandName === 'show') {
-        const showCommand = require('../commands/sheet/show.js');
-        if (showCommand.autocomplete) {
-          await showCommand.autocomplete(interaction);
-        }
+      const command = client.commands.get(interaction.commandName);
+      if (!command || !command.autocomplete) return;
+
+      try {
+        await command.autocomplete(interaction);
+      } catch (error) {
+        Logger.error(loc('log.error.command_execution'), {
+          user: interaction.user.id,
+          stack: error.stack
+        });
       }
       return;
     }

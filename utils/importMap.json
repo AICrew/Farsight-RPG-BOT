@@ -13,9 +13,9 @@
     "vitality_point": "AD4",
     "death_threshold": "AA4",
     "speed": "V14",
-    "climb": "K27",
-    "fly": "",
-    "swim": "K26",
+    "climb": "AK16",
+    "fly": "AK18",
+    "swim": "AK14",
     "initiative": "Y14",
     "defense": "V18",
     "armor_value": "Y18"
