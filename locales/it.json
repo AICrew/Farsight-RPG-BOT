@@ -24,11 +24,20 @@
   "value": "Valore",
   "bonus": "Bonus",
   "range": "Gittata",
-  "notFound": "Nessun personaggio trovato",
-  "notAuthorized": "Non autorizzato",
-  "error": "Errore",
-  "success": "Successo",
-  "abilities": {
+  "abilities": "Abilità",
+  "skills": "Qualifiche",
+  "attack": "Attacco",
+  "attacks": "Attacchi",
+  "atkbonus": "Attacco Bonus",
+  "trait": "Tratto",
+  "traits": "Tratti",
+  "powers": "Poteri",
+  "power": "Potere",
+  "psipoint": "Punti PSI",
+  "psiattack": "Attacco Psionico",
+  "psiforce": "Forza Psionica",
+  "psilimit": "Limite PSI",
+  "abilitiesValue": {
     "Combativity": "Combattività",
     "Strength": "Robustezza",
     "Dexterity": "Destrezza",
@@ -37,7 +46,7 @@
     "Will": "Volontà",
     "Tech": "Tecnica"
   },
-  "skills": {
+  "skillsValue": {
     "Cold Weapons": "Armi Bianche",
     "Energy Weapons": "Armi Energetiche",
     "Gunnery": "Artiglieria",
@@ -85,46 +94,82 @@
     "Mechatronics": "Meccatronica",
     "Mystification": "Mistificazione"
   },
-  "attacks": {
-    "attack": "Attacco",
-    "attacks": "Attacchi",
-    "atkbonus": "Attacco Bonus"
-  },
-  "powers": {
-    "powers": "Poteri",
-    "power": "Power",
-    "psipoint": "Punti PSI",
-    "psiattack": "Attacco Psionico",
-    "psiforce": "Forza Psionica",
-    "psilimit": "Limite PSI"
-  },
-  "traits": {
-    "traits": "Tratti",
-    "trait": "Tratto"
-  },
-  "errors": {
-    "database_error": "Errore nel database",
-    "character_not_found": "Personaggio non trovato",
-    "generic_error": "Errore durante l'operazione"
+  "log": {
+    "error": {
+      "removed_old_log": "Rimosso log vecchio: {{file}} ({{days}} giorni)",
+      "import": "❌ Errore durante l'import: {{message}}",
+      "import_unknown": "Errore sconosciuto",
+      "import_details": "Dettagli: {{details}}",
+      "command_execution": "❌ Errore durante l'esecuzione del comando!",
+      "show_no_name": "Devi fornire il nome del personaggio.",
+      "show_not_found": "Personaggio \"{{name}}\" non trovato.",
+      "show_generic": "❌ Errore nel comando show: {{message}}",
+      "interaction_command": "Errore nell'esecuzione di /{{command}}",
+      "unhandled_rejection": "Errore di promessa non gestita",
+      "supabase_config_missing": "Configurazione Supabase mancante (url o key).",
+      "supabase_config_error": "Errore nella configurazione Supabase.",
+      "logger_error": "Errore",
+      "in_environment": "in ambiente {{env}}",
+      "commands_loaded": "Comando caricato: {{name}}",
+      "commands_invalid": "Comando non valido nel file {{file}}",
+      "commands_missingData": "Dati comando mancanti",
+      "commands_missingExecute": "Metodo execute mancante",
+      "google_auth_invalid_link": "Formato del link non valido"
+    },
+    "success": {
+      "import": "✅ **{{name}}** importato con successo.",
+      "info": "Informazione",
+      "debug": "Debug",
+      "google_auth_sheet_id": "ID del foglio estratto: {{sheetId}}",
+      "google_auth_jwt_created": "JWT creato per l'email: {{email}}",
+      "google_auth_loading_doc": "Caricamento informazioni del documento...",
+      "google_auth_doc_loaded": "Informazioni del documento caricate"
+    }
   },
   "commands": {
-    "import": {
-      "description": "Importa un personaggio da Google Sheets",
-      "sheet_url_desc": "URL condiviso del foglio Google",
-      "success": "✅ {name} ({class} Lv.{level}) importato con successo!",
-      "error": "❌ Importazione fallita: {error}"
-    },
     "show": {
-      "description": "Mostra la scheda di un personaggio",
-      "character_name_desc": "Nome esatto del personaggio"
+      "description": "Mostra i dati del personaggio salvato",
+      "option": {
+        "name": "Nome del personaggio"
+      },
+      "base_info": "📋 Info Base",
+      "traits": "🧠 Tratti",
+      "abilities_and_skills": "🧬 Abilità e Competenze di {{name}}",
+      "no_traits": "Nessun tratto disponibile."
     },
-    "update": {
-      "description": "Aggiorna un campo del personaggio",
-      "character_name_desc": "Nome del personaggio da aggiornare",
-      "field_desc": "Campo da aggiornare",
-      "value_desc": "Nuovo valore",
-      "success": "✅ {name} - {field} aggiornato a {value}",
-      "error": "❌ Aggiornamento fallito: {error}"
+    "import": {
+      "description": "Importa TUTTI i dati dal foglio Google",
+      "option": {
+        "sheet_link": "Incolla il link COMPLETO del foglio"
+      }
     }
+  },
+  "interaction": {
+    "command_executing": "Esecuzione comando: {{command}}",
+    "bot_ready": "Bot pronto! Loggato come {{tag}}"
+  },
+  "misc": {
+    "pagination_next": "▶",
+    "pagination_prev": "◀",
+    "no_data": "-"
+  },
+  "sheet": {
+    "noTabAvailable": "Nessuna tabella disponibile nel foglio.",
+    "loadingAllCells": "Caricamento di tutte le celle",
+    "cellsLoaded": "Celle caricate con successo",
+    "loadCellsError": "Errore durante il caricamento delle celle",
+    "loadCellsException": "Eccezione durante il caricamento delle celle",
+    "extractionFailed": "Estrazione dati dal foglio fallita",
+    "readError": "Errore di lettura del foglio",
+    "cellMissing": "Cella mancante o non valida: {{cell}}"
+  },
+  "events": {
+    "readDirError": "Errore durante la lettura della cartella eventi",
+    "loadFileError": "Errore durante il caricamento del file evento: {{file}}",
+    "invalidEvent": "Evento non valido nel file {{file}}",
+    "missingName": "Nome evento mancante",
+    "missingExecute": "Metodo execute mancante",
+    "loaded": "Evento caricato: {{name}}",
+    "loadError": "Errore durante il caricamento dell'evento: {{name}}"
   }
 }
