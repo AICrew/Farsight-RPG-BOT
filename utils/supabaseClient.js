@@ -5,12 +5,21 @@ const { loc } = require('./translator');
 
 class SupabaseClient {
   constructor() {
-    if (!config.supabase.url || !config.supabase.key) {
+    /*if (!config.supabase.url || !config.supabase.key) {
       logger.error(loc('log.error.supabase_config_missing'));
       throw new Error(loc('log.error.supabase_config_error'));
     }
 
     this.client = createClient(config.supabase.url, config.supabase.key, {
+      db: { schema: 'public' }
+    });*/
+
+    if (!config.supabase.url || !config.supabase.secret) {
+      logger.error(loc('log.error.supabase_config_missing'));
+      throw new Error(loc('log.error.supabase_config_error'));
+    }
+
+    this.client = createClient(config.supabase.url, config.supabase.secret, {
       db: { schema: 'public' }
     });
   }
