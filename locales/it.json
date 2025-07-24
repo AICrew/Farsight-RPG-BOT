@@ -115,7 +115,10 @@
       "commands_missingData": "Dati comando mancanti",
       "commands_missingExecute": "Metodo execute mancante",
       "google_auth_invalid_link": "Formato del link non valido",
-      "delete": "❌ Errore durante l'eliminazione del personaggio \"{{name}}\"."
+      "delete": "❌ Errore durante l'eliminazione del personaggio \"{{name}}\".",
+      "commands_character_notFound": "❌ Nessun personaggio trovato con questo nome associato al tuo account.",
+      "commands_character_noLink": "❌ Questo personaggio non ha un link al foglio associato.",
+      "commands_roll_noAbility": "❌ Abilità non trovata per questo personaggio."
     },
     "success": {
       "import": "✅ **{{name}}** importato con successo.",
@@ -152,6 +155,27 @@
       "confirmMessage": "Sei sicuro di voler eliminare \"{{name}}\"?",
       "cancelled": "Eliminazione annullata.",
       "timeout": "Tempo scaduto. Nessuna azione effettuata."
+    },
+    "update": {
+      "description": "Aggiorna un personaggio esistente dal foglio",
+      "option": {
+        "name": "Nome del personaggio da aggiornare"
+      }
+    },
+    "roll": {
+      "description": "Esegui un tiro di abilità o qualifica",
+      "option": {
+        "name": "Nome del personaggio",
+        "ability": "Nome dell'abilità",
+        "skill": "Nome della qualifica (opzionale)",
+        "bonus": "Bonus o penalità extra al tiro",
+        "mode": "Modalità del tiro"
+      },
+      "mode": {
+        "normal": "Normale",
+        "adv": "Vantaggio",
+        "dis": "Svantaggio"
+      }
     }
   },
   "interaction": {
