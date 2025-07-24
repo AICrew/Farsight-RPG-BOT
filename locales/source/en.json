@@ -124,7 +124,9 @@
       "commands_missingData": "Missing command data",
       "commands_missingExecute": "Missing execute method",
       "google_auth_invalid_link": "Invalid link format",
-      "delete": "❌ Error deleting character \"{{name}}\"."
+      "delete": "❌ Error deleting character \"{{name}}\".",
+      "commands_character_notFound": "❌ No character found with that name associated with your account.",
+      "commands_character_noLink": "❌ This character doesn't have a linked sheet URL."
     },
     "success": {
       "import": "✅ **{{name}}** imported successfully.",
@@ -153,14 +155,35 @@
       "description": "Import ALL data from the Google sheet",
       "option": {
         "sheet_link": "Paste the FULL sheet link"
+      }
+    },
+    "delete": {
+      "description": "Delete a character",
+      "confirm": "Confirm deletion",
+      "cancel": "Cancel",
+      "confirmMessage": "Are you sure you want to delete \"{{name}}\"?",
+      "cancelled": "Deletion cancelled.",
+      "timeout": "Timeout expired. No action taken."
+    },
+    "update": {
+      "description": "Update an existing character from the sheet",
+      "option": {
+        "name": "Name of the character to update"
+      }
+    },
+    "roll": {
+      "description": "Perform an ability or skill check",
+      "option": {
+        "name": "Character name",
+        "ability": "Ability name",
+        "skill": "Skill name (optional)",
+        "bonus": "Extra bonus or penalty to the roll",
+        "mode": "Roll mode"
       },
-      "delete": {
-        "description": "Delete a character",
-        "confirm": "Confirm deletion",
-        "cancel": "Cancel",
-        "confirmMessage": "Are you sure you want to delete \"{{name}}\"?",
-        "cancelled": "Deletion cancelled.",
-        "timeout": "Timeout expired. No action taken."
+      "mode": {
+        "normal": "Normal",
+        "adv": "Advantage",
+        "dis": "Disadvantage"
       }
     }
   },
