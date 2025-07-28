@@ -1,12 +1,12 @@
 {
   "sheet": {
-    "noTabAvailable": "No tab available in the sheet.",
-    "loadingAllCells": "Loading all cells",
-    "cellsLoaded": "Cells loaded successfully",
-    "loadCellsError": "Error loading cells",
-    "loadCellsException": "Exception occurred during cells loading",
-    "extractionFailed": "Failed to extract data from the sheet",
-    "readError": "Sheet read error",
-    "cellMissing": "Missing or invalid cell: {{cell}}"
+    "noTabAvailable": "Nessuna tabella disponibile nel foglio.",
+    "loadingAllCells": "Caricamento di tutte le celle",
+    "cellsLoaded": "Celle caricate con successo",
+    "loadCellsError": "Errore durante il caricamento delle celle",
+    "loadCellsException": "Eccezione durante il caricamento delle celle",
+    "extractionFailed": "Estrazione dati dal foglio fallita",
+    "readError": "Errore di lettura del foglio",
+    "cellMissing": "Cella mancante o non valida: {{cell}}"
   }
 }
