@@ -41,7 +41,6 @@
   "psilimit": "Limite PSI",
   "mode": "Modalità",
   "result": "Risultato",
-
   "abilitiesValue": {
     "Combativity": "Combattività",
     "Strength": "Robustezza",
@@ -51,7 +50,6 @@
     "Will": "Volontà",
     "Tech": "Tecnica"
   },
-
   "skillsValue": {
     "Cold Weapons": "Armi Bianche",
     "Energy Weapons": "Armi Energetiche",
@@ -60,14 +58,12 @@
     "Natural Weapon": "Armi Naturali",
     "Wrestling": "Lottare",
     "Throwing": "Lanciare",
-
     "Athletics": "Atletica",
     "Climbing": "Scalare",
     "G-Zero": "G-Zero",
     "Might": "Forza",
     "Swimming": "Nuotare",
     "Vigor": "Tempra",
-
     "Acrobatics": "Acrobazia",
     "Dancing": "Danza",
     "Piloting": "Pilotare",
@@ -75,14 +71,12 @@
     "Riding": "Cavalcare",
     "Stealth": "Furtività",
     "Sleight of Hand": "Manolesta",
-
     "Alertness": "Allerta",
     "Insight": "Intuizione",
     "Inspection": "Ispezionare",
     "Music": "Musica",
     "Survival": "Sopravvivenza",
     "Visual Arts": "Arti Visive",
-
     "Erudition": "Erudizione",
     "Lucidity": "Lucidità",
     "Medicine": "Medicina",
@@ -90,7 +84,6 @@
     "Psionics": "Psicopotere",
     "Science": "Scienza",
     "Warfare": "Arti Belliche",
-
     "Charisma": "Carisma",
     "Cunning": "Scaltrezza",
     "Fortitude": "Fermezza",
@@ -106,7 +99,6 @@
     "Mechatronics": "Meccatronica",
     "Mystification": "Mistificazione"
   },
-
   "log": {
     "error": {
       "removed_old_log": "Rimosso log vecchio: {{file}} ({{days}} giorni)",
@@ -145,7 +137,6 @@
       "update": "Personaggio **{{name}}** aggiornato con successo."
     }
   },
-
   "commands": {
     "show": {
       "name": "mostra",
@@ -179,6 +170,15 @@
         "name": "nome_personaggio",
         "name_description": "Nome del personaggio da eliminare"
       }
+    },
+    "update": {
+      "name": "aggiorna",
+      "description": "Aggiorna un personaggio esistente dal foglio",
+      "option": {
+        "name": "nome_personaggio",
+        "name_description": "Nome del personaggio da aggiornare"
+      }
+    },
     },
     "update":{
       "name": "aggiorna",
