@@ -169,7 +169,7 @@ module.exports = {
               `\`${roll.output}\`\n` +
               `**${loc('abilities')}:** \`${ability.value}\`\n` +
               `${skillName ? `**${loc('skills')}:** \`${skillMod}\`` : ''}\n` +
-              `${bonus !== 0 ? `**${loc('commands.ability.option.bonus')}:** \`${bonus > 0 ? '+' : ''}${bonus}\`` : ''}`
+              `${bonus !== 0 ? `**${loc('bonus')}:** \`${bonus > 0 ? '+' : ''}${bonus}\`` : ''}`
           },
         ],
         timestamp: new Date()
