@@ -1,0 +1,11 @@
+{
+  "abilitiesValue": {
+    "Combativity": "Combativity",
+    "Strength": "Strength",
+    "Dexterity": "Dexterity",
+    "Perception": "Perception",
+    "Intelligence": "Intelligence",
+    "Will": "Will",
+    "Tech": "Tech"
+  }
+}
