@@ -24,7 +24,9 @@
   "value": "Value",
   "bonus": "Bonus",
   "range": "Range",
+  "ability": "Ability",
   "abilities": "Abilities",
+  "skill": "Skill",
   "skills": "Skills",
   "attack": "Attack",
   "attacks": "Attacks",
@@ -37,6 +39,8 @@
   "psiattack": "Psi Attack",
   "psiforce": "Psi Force",
   "psilimit": "PSI Limit",
+  "mode": "Mode",
+  "result": "Result",
 
   "abilitiesValue": {
     "Combativity": "Combativity",
@@ -106,13 +110,13 @@
   "log": {
     "error": {
       "removed_old_log": "Removed old log: {{file}} ({{days}} days)",
-      "import": "❌ Error during import: {{message}}",
+      "import": "Error during import: {{message}}",
       "import_unknown": "Unknown error",
       "import_details": "Details: {{details}}",
-      "command_execution": "❌ Error during command execution!",
+      "command_execution": "Error during command execution!",
       "show_no_name": "You must provide the character name.",
       "show_not_found": "Character \"{{name}}\" not found.",
-      "show_generic": "❌ Error in show command: {{message}}",
+      "show_generic": "Error in show command: {{message}}",
       "interaction_command": "Error during /{{command}} execution",
       "unhandled_rejection": "Unhandled promise rejection",
       "supabase_config_missing": "Supabase configuration missing (url or key).",
@@ -124,61 +128,79 @@
       "commands_missingData": "Missing command data",
       "commands_missingExecute": "Missing execute method",
       "google_auth_invalid_link": "Invalid link format",
-      "delete": "❌ Error deleting character \"{{name}}\".",
-      "commands_character_notFound": "❌ No character found with that name associated with your account.",
-      "commands_character_noLink": "❌ This character doesn't have a linked sheet URL."
+      "delete": "Error deleting character \"{{name}}\".",
+      "commands_character_notFound": "No character found with that name associated with your account.",
+      "commands_character_noLink": "This character doesn't have a linked sheet URL."
     },
     "success": {
-      "import": "✅ **{{name}}** imported successfully.",
+      "import": "Character **{{name}}** imported successfully.",
       "info": "Information",
       "debug": "Debug",
       "google_auth_sheet_id": "Extracted sheet ID: {{sheetId}}",
       "google_auth_jwt_created": "JWT created for email: {{email}}",
       "google_auth_loading_doc": "Loading document info...",
       "google_auth_doc_loaded": "Document info loaded",
-      "delete": "✅ Character \"{{name}}\" successfully deleted."
+      "delete": "Character \"{{name}}\" successfully deleted.",
+      "update": "Character **{{name}}** successfully updated."
     }
   },
 
   "commands": {
     "show": {
+      "name": "show",
       "description": "Show saved character data",
       "option": {
-        "name": "Character Name"
+        "name": "character_name",
+        "name_description": "Name of the character to show"
       },
-      "base_info": "📋 Basic Info",
-      "traits": "🧠 Traits",
-      "abilities_and_skills": "🧬 Abilities and Skills of {{name}}",
+      "base_info": "Basic Info",
+      "traits": "Traits",
+      "abilities_and_skills": "Abilities and Skills of {{name}}",
       "no_traits": "No traits available."
     },
     "import": {
+      "name": "import",
       "description": "Import ALL data from the Google sheet",
       "option": {
-        "sheet_link": "Paste the FULL sheet link"
+        "sheet_link": "sheet_link",
+        "sheet_link_description" : "Paste the FULL sheet link"
       }
     },
     "delete": {
+      "name": "delete",
       "description": "Delete a character",
       "confirm": "Confirm deletion",
       "cancel": "Cancel",
       "confirmMessage": "Are you sure you want to delete \"{{name}}\"?",
       "cancelled": "Deletion cancelled.",
-      "timeout": "Timeout expired. No action taken."
-    },
-    "update": {
-      "description": "Update an existing character from the sheet",
+      "timeout": "Timeout expired. No action taken.",
       "option": {
-        "name": "Name of the character to update"
+        "name": "character_name",
+        "name_description": "Name of the character to delete"
       }
     },
-    "roll": {
-      "description": "Perform an ability or skill check",
+    "update": {
+      "name": "update",
+      "description": "Update an existing character from the sheet",
       "option": {
-        "name": "Character name",
-        "ability": "Ability name",
-        "skill": "Skill name (optional)",
-        "bonus": "Extra bonus or penalty to the roll",
-        "mode": "Roll mode"
+        "name": "character_name",
+        "name_description": "Name of the character to update"
+      }
+    },
+    "ability": {
+      "name": "roll",
+      "description": "Perform an ability check",
+      "option": {
+        "name": "character_name",
+        "name_description": "Character name",
+        "ability": "ability",
+        "ability_description": "Ability",
+        "skill": "skill",
+        "skill_description": "Skill name (optional)",
+        "bonus": "bonus",
+        "bonus_description": "Extra bonus or penalty to the roll",
+        "mode": "mode",
+        "mode_description": "Roll mode"
       },
       "mode": {
         "normal": "Normal",

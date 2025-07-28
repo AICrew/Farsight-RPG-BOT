@@ -5,13 +5,13 @@ const { loc } = require('./translator');
 
 class SheetDataFetcher {
   /**
-   * Estrae tutti i dati strutturati dal foglio Google
+   * Estrae tutti i dati strutturati dal primo foglio del documento Google
    * @param {string} fullLink - URL completo del foglio
    */
   async fetchAllData(fullLink) {
     try {
       const doc = await googleAuth.getDocFromLink(fullLink);
-      const sheet = doc.sheetsByIndex[0];
+      const sheet = doc.sheetsByIndex[0]; // Usa solo il primo foglio
       if (!sheet) throw new Error(loc('sheet.noTabAvailable'));
 
       logger.info(`[fetchAllData] ${loc('sheet.loadingAllCells')}...`);
@@ -23,14 +23,13 @@ class SheetDataFetcher {
         throw new Error(loc('sheet.loadCellsException'));
       }
 
-      // Estrazione dati
       return {
         character: this._extractSection(sheet, importMap.character),
-        abilities: this._extractAbilities(sheet),
-        skills: this._extractAllSkills(sheet),
-        attacks: this._extractDynamicSection(sheet, 'attacks'),
-        powers: this._extractDynamicSection(sheet, 'powers'),
-        traits: this._extractTraits(sheet)
+        abilitiesAndSkills: this._extractAbilitiesAndSkills(sheet),
+        attacks: this._extractSplitSection(sheet, importMap.attacks),
+        powers: this._extractSplitSection(sheet, importMap.powers),
+        traits: this._extractSplitSection(sheet, importMap.traits),
+        inventory: this._extractSplitSection(sheet, importMap.inventory),
       };
 
     } catch (error) {
@@ -49,41 +48,50 @@ class SheetDataFetcher {
     return data;
   }
 
-  _extractAbilities(sheet) {
-    const abilities = {};
-    for (const [name, data] of Object.entries(importMap.abilities)) {
-      abilities[name] = {
-        value: this._getCellValue(sheet, data.value),
-        skills: this._extractSection(sheet, data.skills)
-      };
+  /**
+   * Estrae tutte abilità e skill in un array piatto
+   * basato su importMap.abilitiesAndSkills (array di {type, name, value})
+   */
+  _extractAbilitiesAndSkills(sheet) {
+    const results = [];
+
+    for (const item of importMap.abilitiesAndSkills) {
+      const value = this._getCellValue(sheet, item.value);
+      if (value === undefined || value === null) continue;
+
+      results.push({
+        type: item.type,   // 'ability' o 'skill'
+        name: item.name,
+        value: Number(value)
+      });
     }
-    return abilities;
+    console.log('ABILITIES AND SKILLS:', results);
+    return results;
   }
 
-  _extractAllSkills(sheet) {
-    const skills = [];
-    for (const [abilityName, abilityData] of Object.entries(importMap.abilities)) {
-      for (const [skillName, cell] of Object.entries(abilityData.skills)) {
-        skills.push({
-          ability: abilityName,
-          name: skillName,
-          value: this._getCellValue(sheet, cell)
-        });
+  _extractSplitSection(sheet, sectionMap) {
+    const results = [];
+
+    for (const item of sectionMap) {
+      const data = this._extractSection(sheet, item);
+      for (const [key, value] of Object.entries(data)) {
+        if (!value) continue;
+
+        // Split per virgola e crea oggetti
+        const parts = value.split(',').map(part =>
+          part
+            .replace(/\([^)]*\)/g, '') // rimuove contenuto tra parentesi
+            .replace(/\*/g, '')        // rimuove asterischi
+            .trim()
+        ).filter(Boolean);
+
+        for (const p of parts) {
+          results.push({ name: p });
+        }
       }
     }
-    return skills.filter(skill => skill.value !== undefined);
-  }
 
-  _extractDynamicSection(sheet, sectionType) {
-    return importMap[sectionType].map(item =>
-      this._extractSection(sheet, item)
-    ).filter(item => Object.values(item).some(val => val !== undefined));
-  }
-
-  _extractTraits(sheet) {
-    return this._extractDynamicSection(sheet, 'traits')
-      .filter(trait => trait.name)
-      .map(trait => ({ name: trait.name }));
+    return results;
   }
 
   _getCellValue(sheet, cell) {

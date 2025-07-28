@@ -24,7 +24,9 @@
   "value": "Valore",
   "bonus": "Bonus",
   "range": "Gittata",
+  "ability": "Abilità",
   "abilities": "Abilità",
+  "skill": "Qualifica",
   "skills": "Qualifiche",
   "attack": "Attacco",
   "attacks": "Attacchi",
@@ -37,6 +39,8 @@
   "psiattack": "Attacco Psionico",
   "psiforce": "Forza Psionica",
   "psilimit": "Limite PSI",
+  "mode": "Modalità",
+  "result": "Risultato",
 
   "abilitiesValue": {
     "Combativity": "Combattività",
@@ -106,13 +110,13 @@
   "log": {
     "error": {
       "removed_old_log": "Rimosso log vecchio: {{file}} ({{days}} giorni)",
-      "import": "❌ Errore durante l'import: {{message}}",
+      "import": "Errore durante l'import: {{message}}",
       "import_unknown": "Errore sconosciuto",
       "import_details": "Dettagli: {{details}}",
-      "command_execution": "❌ Errore durante l'esecuzione del comando!",
+      "command_execution": "Errore durante l'esecuzione del comando!",
       "show_no_name": "Devi fornire il nome del personaggio.",
       "show_not_found": "Personaggio \"{{name}}\" non trovato.",
-      "show_generic": "❌ Errore nel comando show: {{message}}",
+      "show_generic": "Errore nel comando show: {{message}}",
       "interaction_command": "Errore nell'esecuzione di /{{command}}",
       "unhandled_rejection": "Errore di promessa non gestita",
       "supabase_config_missing": "Configurazione Supabase mancante (url o key).",
@@ -124,62 +128,80 @@
       "commands_missingData": "Dati comando mancanti",
       "commands_missingExecute": "Metodo execute mancante",
       "google_auth_invalid_link": "Formato del link non valido",
-      "delete": "❌ Errore durante l'eliminazione del personaggio \"{{name}}\".",
-      "commands_character_notFound": "❌ Nessun personaggio trovato con questo nome associato al tuo account.",
-      "commands_character_noLink": "❌ Questo personaggio non ha un link al foglio associato.",
-      "commands_roll_noAbility": "❌ Abilità non trovata per questo personaggio."
+      "delete": "Errore durante l'eliminazione del personaggio \"{{name}}\".",
+      "commands_character_notFound": "Nessun personaggio trovato con questo nome associato al tuo account.",
+      "commands_character_noLink": "Questo personaggio non ha un link al foglio associato.",
+      "commands_roll_noAbility": "Abilità non trovata per questo personaggio."
     },
     "success": {
-      "import": "✅ **{{name}}** importato con successo.",
+      "import": "Personaggio **{{name}}** importato con successo.",
       "info": "Informazione",
       "debug": "Debug",
       "google_auth_sheet_id": "ID del foglio estratto: {{sheetId}}",
       "google_auth_jwt_created": "JWT creato per l'email: {{email}}",
       "google_auth_loading_doc": "Caricamento informazioni del documento...",
       "google_auth_doc_loaded": "Informazioni del documento caricate",
-      "delete": "✅ Personaggio \"{{name}}\" eliminato con successo."
+      "delete": "Personaggio **{{name}}** eliminato con successo.",
+      "update": "Personaggio **{{name}}** aggiornato con successo."
     }
   },
 
   "commands": {
     "show": {
+      "name": "mostra",
       "description": "Mostra i dati del personaggio salvato",
       "option": {
-        "name": "Nome del personaggio"
+        "name": "nome_personaggio",
+        "name_description": "Nome del personaggio da mostrare"
       },
-      "base_info": "📋 Info Base",
-      "traits": "🧠 Tratti",
-      "abilities_and_skills": "🧬 Abilità e Competenze di {{name}}",
+      "base_info": "Info Base",
+      "traits": "Tratti",
+      "abilities_and_skills": "Abilità e Qualifiche di {{name}}",
       "no_traits": "Nessun tratto disponibile."
     },
     "import": {
+      "name": "importa",
       "description": "Importa TUTTI i dati dal foglio Google",
       "option": {
-        "sheet_link": "Incolla il link COMPLETO del foglio"
+        "sheet_link": "sheet_link",
+        "sheet_link_description": "Incolla il link COMPLETO del foglio"
       }
     },
     "delete": {
+      "name": "elimina",
       "description": "Elimina un personaggio",
       "confirm": "Conferma eliminazione",
       "cancel": "Annulla",
       "confirmMessage": "Sei sicuro di voler eliminare \"{{name}}\"?",
       "cancelled": "Eliminazione annullata.",
-      "timeout": "Tempo scaduto. Nessuna azione effettuata."
-    },
-    "update":{
-      "description": "Aggiorna un personaggio esistente dal foglio",
+      "timeout": "Tempo scaduto. Nessuna azione effettuata.",
       "option": {
-        "name": "Nome del personaggio da aggiornare"
+        "name": "nome_personaggio",
+        "name_description": "Nome del personaggio da eliminare"
       }
     },
-    "roll": {
-      "description": "Esegui un tiro di abilità o qualifica",
+    "update":{
+      "name": "aggiorna",
+      "description": "Aggiorna un personaggio esistente dal foglio",
       "option": {
-        "name": "Nome del personaggio",
-        "ability": "Nome dell'abilità",
-        "skill": "Nome della qualifica (opzionale)",
-        "bonus": "Bonus o penalità extra al tiro",
-        "mode": "Modalità del tiro"
+        "name": "nome_personaggio",
+        "name_description": "Nome del personaggio da aggiornare"
+      }
+    },
+    "ability": {
+      "name": "abilita",
+      "description": "Esegui un tiro di abilità",
+      "option": {
+        "name": "nome_personaggio",
+        "name_description": "Nome del personaggio",
+        "ability": "abilita",
+        "ability_description": "Nome dell'abilità",
+        "skill": "qualifica",
+        "skill_description": "Nome della qualifica (opzionale)",
+        "bonus": "bonus",
+        "bonus_description": "Bonus o penalità extra al tiro",
+        "mode": "modalita",
+        "mode_description": "Modalità del tiro"
       },
       "mode": {
         "normal": "Normale",

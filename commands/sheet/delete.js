@@ -1,15 +1,19 @@
 const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const supabase = require('../../utils/supabaseClient');
-const { loc } = require('../../utils/translator');
+const { loc, locAll, locAllName } = require('../../utils/translator');
 const Logger = require('../../utils/logger');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('delete')
-    .setDescription('Elimina un personaggio')
+    .setNameLocalizations(locAllName('commands.delete.name')) // localizza nome comando
+    .setDescription(loc('commands.delete.description'))
+    .setDescriptionLocalizations(locAll('commands.delete.description')) // localizza descrizione
     .addStringOption(option =>
       option.setName('name')
-        .setDescription('Nome del personaggio da eliminare')
+        .setNameLocalizations(locAllName('commands.delete.option.name')) // localizza nome opzione
+        .setDescription(loc('commands.delete.option.name_description'))
+        .setDescriptionLocalizations(locAll('commands.delete.option.name_description')) // localizza descrizione opzione
         .setAutocomplete(true)
         .setRequired(true)
     ),
@@ -22,7 +26,7 @@ module.exports = {
         .from('characters')
         .select('name')
         .eq('player', interaction.user.id)
-        .ilike('name', `${focused}%`) // o `%${focused}%`
+        .ilike('name', `${focused}%`)
         .limit(25);
 
       if (error) {
@@ -46,18 +50,17 @@ module.exports = {
     const row = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
         .setCustomId('confirm_delete')
-        .setLabel('✅ Conferma')
+        .setLabel(loc('commands.delete.confirm'))
         .setStyle(ButtonStyle.Danger),
       new ButtonBuilder()
         .setCustomId('cancel_delete')
-        .setLabel('❌ Annulla')
+        .setLabel(loc('commands.delete.cancel'))
         .setStyle(ButtonStyle.Secondary)
     );
 
     await interaction.reply({
-      content: `Sei sicuro di voler eliminare **${name}**?`,
-      components: [row],
-      ephemeral: true
+      content: loc('commands.delete.confirmMessage', { name }),
+      components: [row]
     });
 
     const filter = i =>
@@ -68,7 +71,7 @@ module.exports = {
       const confirmation = await interaction.channel.awaitMessageComponent({ filter, time: 15000 });
 
       if (confirmation.customId === 'cancel_delete') {
-        return confirmation.update({ content: '❌ Eliminazione annullata.', components: [] });
+        return confirmation.update({ content: loc('commands.delete.cancelled'), components: [] });
       }
 
       const { error } = await supabase
@@ -79,7 +82,10 @@ module.exports = {
 
       if (error) throw error;
 
-      await confirmation.update({ content: `✅ Personaggio **${name}** eliminato.`, components: [] });
+      await confirmation.update({
+        content: loc('log.success.delete', { name }),
+        components: []
+      });
 
     } catch (err) {
       Logger.error(loc('log.error.delete'), {
@@ -89,7 +95,7 @@ module.exports = {
       });
 
       await interaction.editReply({
-        content: `❌ ${loc('log.error.delete')}`,
+        content: `${loc('log.error.delete')}`,
         components: []
       });
     }

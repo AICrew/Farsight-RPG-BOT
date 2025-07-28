@@ -3,7 +3,7 @@ const config = require('./config.js');
 const Logger = require('./utils/logger');
 const loadCommands = require('./utils/loadCommands');
 const loadEvents = require('./utils/loadEvents');
-const { loc } = require('./utils/translator');
+const { loc, init: i18nInit } = require('./utils/translator');
 
 const client = new Client({
   intents: [
@@ -17,6 +17,7 @@ client.commands = new Collection();
 // Avvio del bot
 (async () => {
   try {
+    await i18nInit();
     await loadCommands(client);
     await loadEvents(client);
     await client.login(config.token);

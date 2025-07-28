@@ -5,17 +5,24 @@ const config = require('../config.json');
 
 const supportedTypes = ['abilities', 'skills'];
 
-i18next.use(Backend).init({
-  lng: config.language || 'it',
-  fallbackLng: 'it',
-  backend: {
-    loadPath: path.join(__dirname, `../locales/{{lng}}.json`)
-  },
-  interpolation: {
-    escapeValue: false
-  }
-});
+let initialized = false;
 
+async function init() {
+  if (initialized) return;
+
+  await i18next.use(Backend).init({
+    lng: config.language || 'it',
+    fallbackLng: 'it',
+    backend: {
+      loadPath: path.join(__dirname, '../locales/{{lng}}.json')
+    },
+    interpolation: {
+      escapeValue: false
+    }
+  });
+
+  initialized = true;
+}
 /**
  * Traduzione semplice con chiavi flat o con interpolazione
  * @param {string} key - Chiave di traduzione
@@ -24,6 +31,41 @@ i18next.use(Backend).init({
  */
 function loc(key, vars) {
   return i18next.t(key, vars);
+}
+
+// Ritorna un oggetto con tutte le lingue disponibili e la traduzione per quella chiave
+function locAll(key) {
+  const locales = {
+    'it': 'it',
+    'en': 'en-GB' // oppure 'en-US' se preferisci
+  };
+
+  const result = {};
+  for (const [short, discordCode] of Object.entries(locales)) {
+    result[discordCode] = i18next.getFixedT(short)(key);
+  }
+
+  return result;
+}
+
+
+// Funzione per pulire la stringa: minuscolo ascii, rimuove accenti e spazi
+function normalizeCommandName(str) {
+  return str
+    .toLowerCase()
+    .normalize('NFD')             // decomponi lettere accentate
+    .replace(/[\u0300-\u036f]/g, '') // rimuovi segni diacritici
+    .replace(/[^a-z0-9_-]/g, '') // tieni solo lettere minuscole, numeri, _ e -
+}
+
+// Funzione che restituisce localizzazioni pulite
+function locAllName(prefix) {
+  const rawLoc = locAll(prefix); // es. { it: "Abilità", en: "Ability" }
+  const cleanedLoc = {};
+  for (const [lang, str] of Object.entries(rawLoc)) {
+    cleanedLoc[lang] = normalizeCommandName(str);
+  }
+  return cleanedLoc;
 }
 
 /**
@@ -43,4 +85,4 @@ function translate(str, type) {
   return translation !== fullKey ? translation : str;
 }
 
-module.exports = { loc, translate };
+module.exports = { loc, translate, init, locAll, locAllName };

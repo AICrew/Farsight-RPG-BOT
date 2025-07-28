@@ -1,17 +1,19 @@
-const { SlashCommandBuilder, EmbedBuilder, ButtonStyle } = require('discord.js');
-const { PaginationWrapper } = require('djs-button-pages');
-const { NextPageButton, PreviousPageButton } = require('@djs-button-pages/presets');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const supabase = require('../../utils/supabaseClient');
 const parentMap = require('../../utils/parentMap');
-const { loc, translate } = require('../../utils/translator');
+const { loc, translate, locAllName, locAll } = require('../../utils/translator');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('show')
+    .setNameLocalizations(locAllName('commands.show.name'))
     .setDescription(loc('commands.show.description'))
+    .setDescriptionLocalizations(locAll('commands.show.description'))
     .addStringOption(option =>
       option.setName('name')
+        .setNameLocalizations(locAllName('commands.show.option.name'))
         .setDescription(loc('commands.show.option.name'))
+        .setDescriptionLocalizations(locAll('commands.show.option.name_description'))
         .setAutocomplete(true)
         .setRequired(true)
     ),
@@ -24,7 +26,7 @@ module.exports = {
         .from('characters')
         .select('name')
         .eq('player', interaction.user.id)
-        .ilike('name', `${focused}%`) // o `%${focused}%`
+        .ilike('name', `${focused}%`)
         .limit(25);
 
       if (error) {
@@ -59,94 +61,78 @@ module.exports = {
         return await interaction.reply({ content: loc('log.error.show_not_found', { name: characterName }), ephemeral: true });
       }
 
-      const [abilitiesRes, skillsRes, traitsRes] = await Promise.all([
+      const [abilitiesRes, traitsRes] = await Promise.all([
         supabase.from('abilities').select('*').eq('character_id', character.id),
-        supabase.from('skills').select('*').eq('character_id', character.id),
         supabase.from('traits').select('*').eq('character_id', character.id)
       ]);
 
-      const abilities = abilitiesRes.data || [];
-      const skills = skillsRes.data || [];
+      const allAbilities = abilitiesRes.data || [];
       const traits = traitsRes.data || [];
-
-      // Mappa delle skill raggruppate per abilità
       const skillMap = new Map();
-      for (const skill of skills) {
-        for (const [ability, list] of Object.entries(parentMap)) {
-          if (list.includes(skill.name)) {
-            if (!skillMap.has(ability)) skillMap.set(ability, []);
-            skillMap.get(ability).push(skill);
-            break;
-          }
-        }
+
+      for (const abilityName of Object.keys(parentMap)) {
+
+        const skillNames = parentMap[abilityName];
+        const relatedSkills = allAbilities.filter(a => skillNames.includes(a.name));
+        skillMap.set(abilityName, relatedSkills);
       }
 
-      // Embed 1 - Info Base + Tratti
+      // Embed info base + tratti + abilità con skill > 0
       const baseInfoEmbed = new EmbedBuilder()
         .setTitle(character.name)
+        .setColor('Blue')
         .addFields(
           {
-            name: '📋 ' + loc('commands.show.base_info'),
+            name: `${character.specie || loc('misc.no_data')} — ${character.classtype || loc('misc.no_data')} — ${character.level ?? loc('misc.no_data')}`,
             value:
-              `**${loc('classType')}:** ${character.classType || loc('misc.no_data')}\n` +
-              `**${loc('species')}:** ${character.specie || loc('misc.no_data')}\n` +
-              `**${loc('level')}:** ${character.level ?? loc('misc.no_data')}\n` +
-              `**${loc('initiative')}:** ${character.initiative ?? loc('misc.no_data')}\n` +
-              `**${loc('speed')}:** 🏃‍♂️ ${character.speed ?? loc('misc.no_data')} | 🧗‍♂️ ${character.climb ?? loc('misc.no_data')} | 🏊‍♂️ ${character.swim ?? loc('misc.no_data')} | 🦅 ${character.fly ?? loc('misc.no_data')}\n` +
-              `**${loc('vitality_point')}:** ${character.vitality_point ?? loc('misc.no_data')} | **${loc('death_threshold')}:** ${character.death_threshold ?? loc('misc.no_data')}\n` +
-              `**${loc('defense')}:** ${character.defense ?? loc('misc.no_data')} | **${loc('armor_value')}:** ${character.armor_value ?? loc('misc.no_data')}\n` +
-              `**${loc('background')}:** ${character.background || loc('misc.no_data')}`,
+              `**${loc('vitality_point')}:** \`${character.vitality_point ?? loc('misc.no_data')}\` | ` +
+              `**${loc('death_threshold')}:** \`${character.death_threshold ?? loc('misc.no_data')}\`\n` +
+              `**${loc('defense')}:** \`${character.defense ?? loc('misc.no_data')}\` | ` +
+              `**${loc('armor_value')}:** \`${character.armor_value ?? loc('misc.no_data')}\`\n` +
+              `**${loc('initiative')}:** \`${character.initiative ?? loc('misc.no_data')}\`\n` +
+              `**${loc('speed')}:** \`${character.speed ?? loc('misc.no_data')}\`\n` +
+              `**${loc('climb')}:** \`${character.climb ?? loc('misc.no_data')}\`\n` +
+              `**${loc('swim')}:** \`${character.swim ?? loc('misc.no_data')}\`\n` +
+              `**${loc('fly')}:** \`${character.fly ?? loc('misc.no_data')}\`\n` +
+              `**${loc('background')}:** \`${character.background || loc('misc.no_data')}\``,
             inline: false
           },
           {
-            name: '🧠 ' + loc('commands.show.traits'),
+            name: loc('commands.show.traits'),
             value: traits.length > 0
-              ? traits.map(t => `• ${t.name}`).join('\n')
+              ? traits.map(t => `\`${t.name}\``).join(', ')
               : loc('commands.show.no_traits'),
             inline: false
           }
         );
 
-      // Embed 2 - Abilità + Qualifiche
-      const abilityEmbed = new EmbedBuilder()
-        .setTitle(`🧬 ${loc('commands.show.abilities_and_skills', { name: character.name })}`)
-        .setColor('Blue');
+      const abilities = allAbilities.filter(a => Object.keys(parentMap).includes(a.name));
 
+      // Aggiungo le abilità con le skill > 0
       for (const ability of abilities) {
-        const abilityName = translate(ability.name, 'abilities'); // usa `abilitiesValue`
-        const relatedSkills = skillMap.get(ability.name) || [];
+        const abilityName = translate(ability.name, 'abilities');
+        const relatedSkills = (skillMap.get(ability.name) || []).filter(s => s.value > 0);
 
-        const skillText = relatedSkills.length > 0
-          ? relatedSkills.map(s => {
-              const skillName = translate(s.name, 'skills'); // usa `skillsValue`
-              return `• ${skillName}: ${s.value}`;
-            }).join('\n')
-          : loc('misc.no_data');
+        if (relatedSkills.length === 0) continue;
 
-        abilityEmbed.addFields({
-          name: `🧬 ${abilityName} (${ability.value})`,
+        const skillText = relatedSkills.map(s => {
+          const skillName = translate(s.name, 'skills');
+          return `**${skillName}:** \`${s.value}\``;
+        }).join('\n');
+
+        baseInfoEmbed.addFields({
+          name: `${abilityName}: \`${ability.value}\``,
           value: skillText,
           inline: true
         });
       }
 
-      // Paginazione
-      const buttons = [
-        new PreviousPageButton({ custom_id: 'prev', emoji: loc('misc.pagination_prev'), style: ButtonStyle.Secondary }),
-        new NextPageButton({ custom_id: 'next', emoji: loc('misc.pagination_next'), style: ButtonStyle.Secondary })
-      ];
-
-      const pagination = new PaginationWrapper()
-        .setEmbeds([baseInfoEmbed, abilityEmbed])
-        .setButtons(buttons)
-        .setTime(60000);
-
-      await pagination.interactionReply(interaction);
+      await interaction.reply({ embeds: [baseInfoEmbed], ephemeral: false });
 
     } catch (error) {
       console.error(error);
       await interaction.reply({
-        content: `${loc('log.error.show_generic', { message: error.message })}`,
+        content: loc('log.error.show_generic', { message: error.message }),
         ephemeral: true
       });
     }
