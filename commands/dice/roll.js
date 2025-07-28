@@ -35,5 +35,5 @@ module.exports = {
 	    await interaction.reply(`There was an error executing the command:\n\`${error.message}\``);
 		}
 
-	},
-};
+	}
+}

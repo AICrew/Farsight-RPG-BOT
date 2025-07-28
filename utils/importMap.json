@@ -13,113 +13,79 @@
     "vitality_point": "AD4",
     "death_threshold": "AA4",
     "speed": "V14",
-    "climb": "K27",
-    "fly": "",
-    "swim": "K26",
+    "climb": "AK16",
+    "fly": "AK18",
+    "swim": "AK14",
     "initiative": "Y14",
     "defense": "V18",
-    "armor_value": "Y18"
+    "armor_value": "Y18",
+    "credits": "BD8"
   },
-  "abilities": {
-    "Combativity": {
-      "value": "B13",
-      "skills": {
-        "Cold Weapons": "K14",
-        "Energy Weapons": "K16",
-        "Gunnery": "K18",
-        "Kinetic Weapons": "K15",
-        "Natural Weapon": "K17",
-        "Wrestling": "K20",
-        "Throwing": "K19"
-      }
-    },
-    "Strength": {
-      "value": "B22",
-      "skills": {
-        "Athletics": "K23",
-        "Climbing": "K27",
-        "G-Zero": "K25",
-        "Might": "K24",
-        "Swimming": "K26",
-        "Vigor": "K28"
-      }
-    },
-    "Dexterity": {
-      "value": "B30",
-      "skills": {
-        "Acrobatics": "K31",
-        "Dancing": "K33",
-        "Piloting": "K36",
-        "Reflex": "K37",
-        "Riding": "K32",
-        "Stealth": "K34",
-        "Sleight of Hand": "K35"
-      }
-    },
-    "Perception": {
-      "value": "B39",
-      "skills": {
-        "Alertness": "K40",
-        "Insight": "K42",
-        "Inspection": "K43",
-        "Music": "K44",
-        "Survival": "K45",
-        "Visual Arts": "K41"
-      }
-    },
-    "Intelligence": {
-      "value": "B47",
-      "skills": {
-        "Erudition": "K49",
-        "Lucidity": "K50",
-        "Medicine": "K51",
-        "Nature": "K52",
-        "Psionics": "K53",
-        "Science": "K54",
-        "Warfare": "K48"
-      }
-    },
-    "Will": {
-      "value": "B56",
-      "skills": {
-        "Charisma": "K57",
-        "Cunning": "K62",
-        "Fortitude": "K59",
-        "Intimidation": "K60",
-        "Socialite": "K61",
-        "Streetwise": "K63",
-        "Trading": "K58"
-      }
-    },
-    "Tech": {
-      "value": "B65",
-      "skills": {
-        "Astronautics": "K66",
-        "Computer": "K68",
-        "Cybernetics": "K67",
-        "Explosives": "K69",
-        "Mechatronics": "K70",
-        "Mystification": "K71"
-      }
-    }
-  },
+  "abilitiesAndSkills": [
+    { "type": "ability", "name": "Combativity", "value": "B13" },
+    { "type": "skill", "name": "Cold Weapons", "value": "K14" },
+    { "type": "skill", "name": "Energy Weapons", "value": "K16" },
+    { "type": "skill", "name": "Gunnery", "value": "K18" },
+    { "type": "skill", "name": "Kinetic Weapons", "value": "K15" },
+    { "type": "skill", "name": "Natural Weapon", "value": "K17" },
+    { "type": "skill", "name": "Wrestling", "value": "K20" },
+    { "type": "skill", "name": "Throwing", "value": "K19" },
+    { "type": "ability", "name": "Strength", "value": "B22" },
+    { "type": "skill", "name": "Athletics", "value": "K23" },
+    { "type": "skill", "name": "Climbing", "value": "K27" },
+    { "type": "skill", "name": "G-Zero", "value": "K25" },
+    { "type": "skill", "name": "Might", "value": "K24" },
+    { "type": "skill", "name": "Swimming", "value": "K26" },
+    { "type": "skill", "name": "Vigor", "value": "K28" },
+    { "type": "ability", "name": "Dexterity", "value": "B30" },
+    { "type": "skill", "name": "Acrobatics", "value": "K31" },
+    { "type": "skill", "name": "Dancing", "value": "K33" },
+    { "type": "skill", "name": "Piloting", "value": "K36" },
+    { "type": "skill", "name": "Reflex", "value": "K37" },
+    { "type": "skill", "name": "Riding", "value": "K32" },
+    { "type": "skill", "name": "Stealth", "value": "K34" },
+    { "type": "skill", "name": "Sleight of Hand", "value": "K35" },
+    { "type": "ability", "name": "Perception", "value": "B39" },
+    { "type": "skill", "name": "Alertness", "value": "K40" },
+    { "type": "skill", "name": "Insight", "value": "K42" },
+    { "type": "skill", "name": "Inspection", "value": "K43" },
+    { "type": "skill", "name": "Music", "value": "K44" },
+    { "type": "skill", "name": "Survival", "value": "K45" },
+    { "type": "skill", "name": "Visual Arts", "value": "K41" },
+    { "type": "ability", "name": "Intelligence", "value": "B47" },
+    { "type": "skill", "name": "Erudition", "value": "K49" },
+    { "type": "skill", "name": "Lucidity", "value": "K50" },
+    { "type": "skill", "name": "Medicine", "value": "K51" },
+    { "type": "skill", "name": "Nature", "value": "K52" },
+    { "type": "skill", "name": "Psionics", "value": "K53" },
+    { "type": "skill", "name": "Science", "value": "K54" },
+    { "type": "skill", "name": "Warfare", "value": "K48" },
+    { "type": "ability", "name": "Will", "value": "B56" },
+    { "type": "skill", "name": "Charisma", "value": "K57" },
+    { "type": "skill", "name": "Cunning", "value": "K62" },
+    { "type": "skill", "name": "Fortitude", "value": "K59" },
+    { "type": "skill", "name": "Intimidation", "value": "K60" },
+    { "type": "skill", "name": "Socialite", "value": "K61" },
+    { "type": "skill", "name": "Streetwise", "value": "K63" },
+    { "type": "skill", "name": "Trading", "value": "K58" },
+    { "type": "ability", "name": "Tech", "value": "B65" },
+    { "type": "skill", "name": "Astronautics", "value": "K66" },
+    { "type": "skill", "name": "Computer", "value": "K68" },
+    { "type": "skill", "name": "Cybernetics", "value": "K67" },
+    { "type": "skill", "name": "Explosives", "value": "K69" },
+    { "type": "skill", "name": "Mechatronics", "value": "K70" },
+    { "type": "skill", "name": "Mystification", "value": "K71" }
+  ],
   "attacks": [
-    { 
-      "name": "B1", 
-      "atkbonus": "B1", 
-      "damage": "B1", 
-      "range": "B1" 
-    }
+    { "name": "BD5" }
   ],
   "powers": [
-    { 
-      "name": "B1", 
-      "damage": "B1" 
-    }
+    { "name": "BD6" }
   ],
   "traits": [
-    { 
-      "name": "S20"
-    }
+    { "name": "BD4" }
+  ],
+  "inventory": [
+    { "name": "BD7" }
   ]
 }

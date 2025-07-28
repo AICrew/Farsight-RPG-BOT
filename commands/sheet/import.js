@@ -1,16 +1,21 @@
 const { SlashCommandBuilder } = require('discord.js');
 const sheetDataFetcher = require('../../utils/sheetDataFetcher');
 const supabase = require('../../utils/supabaseClient');
-const { loc } = require('../../utils/translator');
+const { loc, locAll, locAllName } = require('../../utils/translator');
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('import')
+    .setNameLocalizations(locAllName('commands.import.name'))
     .setDescription(loc('commands.import.description'))
+    .setDescriptionLocalizations(locAll('commands.import.description'))
     .addStringOption(option =>
       option.setName('sheet_link')
+        .setNameLocalizations(locAllName('commands.import.option.sheet_link'))
         .setDescription(loc('commands.import.option.sheet_link'))
-        .setRequired(true)),
+        .setDescriptionLocalizations(locAll('commands.import.option.sheet_link_description'))
+        .setRequired(true)
+    ),
 
   async execute(interaction) {
     await interaction.deferReply();
@@ -34,10 +39,16 @@ module.exports = {
     };
 
     try {
-      // 1. Prendi il link e recupera i dati
+      // 1. Prendi il link e recupera i dati dal Google Sheet
       const fullLink = interaction.options.getString('sheet_link');
-      const { character, abilities, skills, attacks, powers, traits } =
-        await sheetDataFetcher.fetchAllData(fullLink);
+      const {
+        character,
+        abilitiesAndSkills,  // array piatto con type, name, value
+        attacks,
+        powers,
+        traits,
+        inventory
+      } = await sheetDataFetcher.fetchAllData(fullLink);
 
       character.player = interaction.user.id;
       character.link = fullLink;
@@ -51,49 +62,55 @@ module.exports = {
 
       if (charError) throw charError;
 
-      // 3. Prepara array per abilità (da oggetto a array)
-      const abilitiesArray = Object.entries(abilities).map(([name, ability]) => ({
+      // 3. Salva abilities + skills nella tabella abilities con type
+      const abilitiesArray = abilitiesAndSkills.map(({ type, name, value }) => ({
         character_id: savedChar.id,
         name,
-        value: ability.value
+        value,
+        category: type
       }));
+      console.log('ABILITIES ARRAY TO INSERT:', abilitiesArray);
 
-      // Le skills sono già array, aggiungi solo character_id
-      const skillsArray = skills.map(({ name, value }) => ({
+      // 4. Prepara array tratti e altre sezioni
+      const traitsArray = traits.map(item => ({
         character_id: savedChar.id,
-        name,
-        value
+        ...item
       }));
 
-      // 4. Salva i dati correlati
+      const attacksArray = attacks.map(item => ({
+        character_id: savedChar.id,
+        ...item
+      }));
+
+      const powersArray = powers.map(item => ({
+        character_id: savedChar.id,
+        ...item
+      }));
+
+      const inventoryArray = inventory.map(item => ({
+        character_id: savedChar.id,
+        ...item
+      }));
+
+      // 5. Salva tutti i dati correlati
       await Promise.all([
-        saveRelatedData('abilities', savedChar.id, abilitiesArray),
-        saveRelatedData('skills', savedChar.id, skillsArray),
-        saveRelatedData('attacks', savedChar.id, attacks),
-        saveRelatedData('powers', savedChar.id, powers),
-        saveRelatedData('traits', savedChar.id, traits)
+        saveRelatedData('abilities', savedChar.id, abilitiesArray), // unica tabella per abilità e skill
+        saveRelatedData('traits', savedChar.id, traitsArray),
+        saveRelatedData('attacks', savedChar.id, attacksArray),
+        saveRelatedData('powers', savedChar.id, powersArray),
+        saveRelatedData('inventory', savedChar.id, inventoryArray)
       ]);
 
-      // 5. Conferma all'utente
+      // 6. Conferma all'utente
       await interaction.editReply({
-        content: `✅ **${savedChar.name}** importato con successo.`,
-        embeds: [{
-          fields: [
-            { name: loc('abilities'), value: (abilitiesArray?.length ?? 0).toString(), inline: true },
-            { name: loc('skills'), value: (skillsArray?.length ?? 0).toString(), inline: true },
-            { name: loc('attacks'), value: (attacks?.length ?? 0).toString(), inline: true },
-            { name: loc('powers'), value: (powers?.length ?? 0).toString(), inline: true },
-            { name: loc('traits'), value: (traits?.length ?? 0).toString(), inline: true }
-          ],
-          timestamp: new Date()
-        }]
+        content: loc('log.success.import', { name: savedChar.name })
       });
 
     } catch (error) {
-      console.error('Errore durante import:', error);
-
       const errorMsg = error.message || loc('log.error.import_unknown');
       const errorDetails = error.details ? `\n${loc('log.error.import_details')}: ${error.details}` : '';
+
+      console.error(`${loc('log.error.import')} ${errorMsg}${errorDetails}`);
 
       await interaction.editReply(`${loc('log.error.import')} ${errorMsg}${errorDetails}`);
     }

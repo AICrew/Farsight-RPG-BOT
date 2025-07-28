@@ -91,6 +91,7 @@
     "Socialite": "Mondanità",
     "Streetwise": "Vita di Strada",
     "Trading": "Commercio",
+
     "Astronautics": "Astronautica",
     "Computer": "Computer",
     "Cybernetics": "Cibernetica",
@@ -178,6 +179,15 @@
         "name_description": "Nome del personaggio da aggiornare"
       }
     },
+    },
+    "update":{
+      "name": "aggiorna",
+      "description": "Aggiorna un personaggio esistente dal foglio",
+      "option": {
+        "name": "nome_personaggio",
+        "name_description": "Nome del personaggio da aggiornare"
+      }
+    },
     "ability": {
       "name": "abilita",
       "description": "Esegui un tiro di abilità",
@@ -228,4 +238,5 @@
     "loaded": "Evento caricato: {{name}}",
     "loadError": "Errore durante il caricamento dell'evento: {{name}}"
   }
+
 }
