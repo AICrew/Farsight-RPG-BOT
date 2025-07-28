@@ -1,6 +1,6 @@
 {
   "interaction": {
-    "command_executing": "Esecuzione comando: {{command}}",
-    "bot_ready": "Bot pronto! Loggato come {{tag}}"
+    "command_executing": "Executing command: {{command}}",
+    "bot_ready": "Bot ready! Logged in as {{tag}}"
   }
 }
