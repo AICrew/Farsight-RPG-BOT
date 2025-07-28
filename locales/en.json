@@ -130,7 +130,8 @@
       "google_auth_invalid_link": "Invalid link format",
       "delete": "Error deleting character \"{{name}}\".",
       "commands_character_notFound": "No character found with that name associated with your account.",
-      "commands_character_noLink": "This character doesn't have a linked sheet URL."
+      "commands_character_noLink": "This character doesn't have a linked sheet URL.",
+      "commands_roll_noAbility": "Ability not found for this character."
     },
     "success": {
       "import": "Character **{{name}}** imported successfully.",
@@ -188,7 +189,7 @@
       }
     },
     "ability": {
-      "name": "roll",
+      "name": "ability",
       "description": "Perform an ability check",
       "option": {
         "name": "character_name",
