@@ -1,0 +1,12 @@
+{
+  "sheet": {
+    "noTabAvailable": "Nessuna tabella disponibile nel foglio.",
+    "loadingAllCells": "Caricamento di tutte le celle",
+    "cellsLoaded": "Celle caricate con successo",
+    "loadCellsError": "Errore durante il caricamento delle celle",
+    "loadCellsException": "Eccezione durante il caricamento delle celle",
+    "extractionFailed": "Estrazione dati dal foglio fallita",
+    "readError": "Errore di lettura del foglio",
+    "cellMissing": "Cella mancante o non valida: {{cell}}"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "commands": {
+    "show": {
+      "name": "mostra",
+      "description": "Mostra i dati del personaggio salvato",
+      "option": {
+        "name": "nome_personaggio",
+        "name_description": "Nome del personaggio da mostrare"
+      },
+      "base_info": "Info Base",
+      "traits": "Tratti",
+      "abilities_and_skills": "Abilità e Qualifiche di {{name}}",
+      "no_traits": "Nessun tratto disponibile."
+    },
+    "import": {
+      "name": "importa",
+      "description": "Importa TUTTI i dati dal foglio Google",
+      "option": {
+        "sheet_link": "sheet_link",
+        "sheet_link_description": "Incolla il link COMPLETO del foglio"
+      }
+    },
+    "delete": {
+      "name": "elimina",
+      "description": "Elimina un personaggio",
+      "confirm": "Conferma eliminazione",
+      "cancel": "Annulla",
+      "confirmMessage": "Sei sicuro di voler eliminare \"{{name}}\"?",
+      "cancelled": "Eliminazione annullata.",
+      "timeout": "Tempo scaduto. Nessuna azione effettuata.",
+      "option": {
+        "name": "nome_personaggio",
+        "name_description": "Nome del personaggio da eliminare"
+      }
+    },
+    "update": {
+      "name": "aggiorna",
+      "description": "Aggiorna un personaggio esistente dal foglio",
+      "option": {
+        "name": "nome_personaggio",
+        "name_description": "Nome del personaggio da aggiornare"
+      }
+    },
+    "ability": {
+      "name": "abilita",
+      "description": "Esegui un tiro di abilità",
+      "option": {
+        "name": "nome_personaggio",
+        "name_description": "Nome del personaggio",
+        "ability": "abilita",
+        "ability_description": "Nome dell'abilità",
+        "skill": "qualifica",
+        "skill_description": "Nome della qualifica (opzionale)",
+        "bonus": "bonus",
+        "bonus_description": "Bonus o penalità extra al tiro",
+        "mode": "modalita",
+        "mode_description": "Modalità del tiro"
+      },
+      "mode": {
+        "normal": "Normale",
+        "adv": "Vantaggio",
+        "dis": "Svantaggio"
+      }
+    }
+  }
+}
