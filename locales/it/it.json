@@ -1,0 +1,231 @@
+{
+  "showDescription": "Mostra i dati di un personaggio",
+  "characterName": "Nome del personaggio",
+  "species": "Specie",
+  "player": "Giocatore",
+  "classType": "Classe",
+  "level": "Livello",
+  "link": "Link",
+  "health": "Salute",
+  "stats": "Statistiche",
+  "background": "Background",
+  "backgrounds": "Background",
+  "vitality_point": "Punti Vitalità",
+  "death_threshold": "Soglia di Morte",
+  "speed": "Velocità",
+  "climb": "Scalata",
+  "fly": "Volo",
+  "swim": "Nuoto",
+  "initiative": "Iniziativa",
+  "defense": "Difesa",
+  "armor_value": "Valore Armatura",
+  "abilitiesAndSkills": "Abilità e Qualifiche",
+  "attacksAndPowers": "Attacchi e Poteri",
+  "value": "Valore",
+  "bonus": "Bonus",
+  "range": "Gittata",
+  "ability": "Abilità",
+  "abilities": "Abilità",
+  "skill": "Qualifica",
+  "skills": "Qualifiche",
+  "attack": "Attacco",
+  "attacks": "Attacchi",
+  "atkbonus": "Attacco Bonus",
+  "trait": "Tratto",
+  "traits": "Tratti",
+  "powers": "Poteri",
+  "power": "Potere",
+  "psipoint": "Punti PSI",
+  "psiattack": "Attacco Psionico",
+  "psiforce": "Forza Psionica",
+  "psilimit": "Limite PSI",
+  "mode": "Modalità",
+  "result": "Risultato",
+  "abilitiesValue": {
+    "Combativity": "Combattività",
+    "Strength": "Robustezza",
+    "Dexterity": "Destrezza",
+    "Perception": "Percezione",
+    "Intelligence": "Intelligenza",
+    "Will": "Volontà",
+    "Tech": "Tecnica"
+  },
+  "skillsValue": {
+    "Cold Weapons": "Armi Bianche",
+    "Energy Weapons": "Armi Energetiche",
+    "Gunnery": "Artiglieria",
+    "Kinetic Weapons": "Armi Cinetiche",
+    "Natural Weapon": "Armi Naturali",
+    "Wrestling": "Lottare",
+    "Throwing": "Lanciare",
+    "Athletics": "Atletica",
+    "Climbing": "Scalare",
+    "G-Zero": "G-Zero",
+    "Might": "Forza",
+    "Swimming": "Nuotare",
+    "Vigor": "Tempra",
+    "Acrobatics": "Acrobazia",
+    "Dancing": "Danza",
+    "Piloting": "Pilotare",
+    "Reflex": "Riflessi",
+    "Riding": "Cavalcare",
+    "Stealth": "Furtività",
+    "Sleight of Hand": "Manolesta",
+    "Alertness": "Allerta",
+    "Insight": "Intuizione",
+    "Inspection": "Ispezionare",
+    "Music": "Musica",
+    "Survival": "Sopravvivenza",
+    "Visual Arts": "Arti Visive",
+    "Erudition": "Erudizione",
+    "Lucidity": "Lucidità",
+    "Medicine": "Medicina",
+    "Nature": "Natura",
+    "Psionics": "Psicopotere",
+    "Science": "Scienza",
+    "Warfare": "Arti Belliche",
+    "Charisma": "Carisma",
+    "Cunning": "Scaltrezza",
+    "Fortitude": "Fermezza",
+    "Intimidation": "Intimidire",
+    "Socialite": "Mondanità",
+    "Streetwise": "Vita di Strada",
+    "Trading": "Commercio",
+    "Astronautics": "Astronautica",
+    "Computer": "Computer",
+    "Cybernetics": "Cibernetica",
+    "Explosives": "Esplosivi",
+    "Mechatronics": "Meccatronica",
+    "Mystification": "Mistificazione"
+  },
+  "log": {
+    "error": {
+      "removed_old_log": "Rimosso log vecchio: {{file}} ({{days}} giorni)",
+      "import": "Errore durante l'import: {{message}}",
+      "import_unknown": "Errore sconosciuto",
+      "import_details": "Dettagli: {{details}}",
+      "command_execution": "Errore durante l'esecuzione del comando!",
+      "show_no_name": "Devi fornire il nome del personaggio.",
+      "show_not_found": "Personaggio \"{{name}}\" non trovato.",
+      "show_generic": "Errore nel comando show: {{message}}",
+      "interaction_command": "Errore nell'esecuzione di /{{command}}",
+      "unhandled_rejection": "Errore di promessa non gestita",
+      "supabase_config_missing": "Configurazione Supabase mancante (url o key).",
+      "supabase_config_error": "Errore nella configurazione Supabase.",
+      "logger_error": "Errore",
+      "in_environment": "in ambiente {{env}}",
+      "commands_loaded": "Comando caricato: {{name}}",
+      "commands_invalid": "Comando non valido nel file {{file}}",
+      "commands_missingData": "Dati comando mancanti",
+      "commands_missingExecute": "Metodo execute mancante",
+      "google_auth_invalid_link": "Formato del link non valido",
+      "delete": "Errore durante l'eliminazione del personaggio \"{{name}}\".",
+      "commands_character_notFound": "Nessun personaggio trovato con questo nome associato al tuo account.",
+      "commands_character_noLink": "Questo personaggio non ha un link al foglio associato.",
+      "commands_roll_noAbility": "Abilità non trovata per questo personaggio."
+    },
+    "success": {
+      "import": "Personaggio **{{name}}** importato con successo.",
+      "info": "Informazione",
+      "debug": "Debug",
+      "google_auth_sheet_id": "ID del foglio estratto: {{sheetId}}",
+      "google_auth_jwt_created": "JWT creato per l'email: {{email}}",
+      "google_auth_loading_doc": "Caricamento informazioni del documento...",
+      "google_auth_doc_loaded": "Informazioni del documento caricate",
+      "delete": "Personaggio **{{name}}** eliminato con successo.",
+      "update": "Personaggio **{{name}}** aggiornato con successo."
+    }
+  },
+  "commands": {
+    "show": {
+      "name": "mostra",
+      "description": "Mostra i dati del personaggio salvato",
+      "option": {
+        "name": "nome_personaggio",
+        "name_description": "Nome del personaggio da mostrare"
+      },
+      "base_info": "Info Base",
+      "traits": "Tratti",
+      "abilities_and_skills": "Abilità e Qualifiche di {{name}}",
+      "no_traits": "Nessun tratto disponibile."
+    },
+    "import": {
+      "name": "importa",
+      "description": "Importa TUTTI i dati dal foglio Google",
+      "option": {
+        "sheet_link": "sheet_link",
+        "sheet_link_description": "Incolla il link COMPLETO del foglio"
+      }
+    },
+    "delete": {
+      "name": "elimina",
+      "description": "Elimina un personaggio",
+      "confirm": "Conferma eliminazione",
+      "cancel": "Annulla",
+      "confirmMessage": "Sei sicuro di voler eliminare \"{{name}}\"?",
+      "cancelled": "Eliminazione annullata.",
+      "timeout": "Tempo scaduto. Nessuna azione effettuata.",
+      "option": {
+        "name": "nome_personaggio",
+        "name_description": "Nome del personaggio da eliminare"
+      }
+    },
+    "update": {
+      "name": "aggiorna",
+      "description": "Aggiorna un personaggio esistente dal foglio",
+      "option": {
+        "name": "nome_personaggio",
+        "name_description": "Nome del personaggio da aggiornare"
+      }
+    },
+    "ability": {
+      "name": "abilita",
+      "description": "Esegui un tiro di abilità",
+      "option": {
+        "name": "nome_personaggio",
+        "name_description": "Nome del personaggio",
+        "ability": "abilita",
+        "ability_description": "Nome dell'abilità",
+        "skill": "qualifica",
+        "skill_description": "Nome della qualifica (opzionale)",
+        "bonus": "bonus",
+        "bonus_description": "Bonus o penalità extra al tiro",
+        "mode": "modalita",
+        "mode_description": "Modalità del tiro"
+      },
+      "mode": {
+        "normal": "Normale",
+        "adv": "Vantaggio",
+        "dis": "Svantaggio"
+      }
+    }
+  },
+  "interaction": {
+    "command_executing": "Esecuzione comando: {{command}}",
+    "bot_ready": "Bot pronto! Loggato come {{tag}}"
+  },
+  "misc": {
+    "pagination_next": "▶",
+    "pagination_prev": "◀",
+    "no_data": "-"
+  },
+  "sheet": {
+    "noTabAvailable": "Nessuna tabella disponibile nel foglio.",
+    "loadingAllCells": "Caricamento di tutte le celle",
+    "cellsLoaded": "Celle caricate con successo",
+    "loadCellsError": "Errore durante il caricamento delle celle",
+    "loadCellsException": "Eccezione durante il caricamento delle celle",
+    "extractionFailed": "Estrazione dati dal foglio fallita",
+    "readError": "Errore di lettura del foglio",
+    "cellMissing": "Cella mancante o non valida: {{cell}}"
+  },
+  "events": {
+    "readDirError": "Errore durante la lettura della cartella eventi",
+    "loadFileError": "Errore durante il caricamento del file evento: {{file}}",
+    "invalidEvent": "Evento non valido nel file {{file}}",
+    "missingName": "Nome evento mancante",
+    "missingExecute": "Metodo execute mancante",
+    "loaded": "Evento caricato: {{name}}",
+    "loadError": "Errore durante il caricamento dell'evento: {{name}}"
+  }
+}
