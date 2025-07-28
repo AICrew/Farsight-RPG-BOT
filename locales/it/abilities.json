@@ -1,11 +1,11 @@
 {
   "abilitiesValue": {
-    "Combativity": "Combativity",
-    "Strength": "Strength",
-    "Dexterity": "Dexterity",
-    "Perception": "Perception",
-    "Intelligence": "Intelligence",
-    "Will": "Will",
-    "Tech": "Tech"
+    "Combativity": "Combattività",
+    "Strength": "Robustezza",
+    "Dexterity": "Destrezza",
+    "Perception": "Percezione",
+    "Intelligence": "Intelligenza",
+    "Will": "Volontà",
+    "Tech": "Tecnica"
   }
 }
